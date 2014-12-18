@@ -1,0 +1,102 @@
+/*                                                                            
+  This is the CSS file styling the AngularAudioPlayer.
+  Note: Do NOT alter this file.
+  If you desire different colors, style the corresponding
+  IDs in your own CSS file.
+*/ 
+
+/*// style the div housing the player*/
+#player {
+    background-color: black;
+    padding: 5px;
+    vertical-align: central;
+
+/*    // the following code is obtained from:
+    // http://stackoverflow.com/questions/9620122/stop-html-text-being-highlighted*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    border-bottom: 2px solid white;
+}
+
+/*// remove all margins*/
+body {
+    margin: 0px;
+}
+
+/*// set the width of the audio tag*/
+audio {
+    width: 1150px;
+
+}
+
+/*// style the previous button*/
+#prev-btn {
+    float: left;
+    padding-top: 5px;
+    color: #999999;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/*// style the two controls on the right*/
+#controls-right {
+    float: right;
+    padding-top: 5px;
+    color: #999999;
+    font-weight: bold;
+
+}
+
+/*// style the next button*/
+#next-btn {
+    padding-right: 5px;
+}
+
+/*// style all links on hover*/
+#prev-btn:hover, a:hover {
+    color: #cccccc;
+    cursor: default;
+}
+
+/*// style the table of songs*/
+#tblSongs {
+    background-color: white;
+    float: right;
+}
+
+/*// style each row in the table of songs*/
+.song {
+    background-color: #cccccc;
+    color: black;
+
+}
+
+/*// style hover for each row in the table of songs*/
+.song:hover {
+    background-color: #999999;
+    cursor: default;
+}
+
+/*// style all children of each row in the table of songs*/
+.song * {
+    padding: 5px;
+    margin: 0px;
+}
+
+/*// style the song title and loop text*/
+#songtitle, #loop {
+    color: white;
+    padding: 5px;
+    margin: 0px;
+}
+
+#show-playlist {
+    font-size: 20px;
+}
+
+
+
