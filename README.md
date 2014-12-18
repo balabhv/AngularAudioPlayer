@@ -7,6 +7,7 @@ Usage
 =====
 
 Just fork this repo, then edit the given starter code as follows:
+
 1. Place your content in the div with id '#content-div'
 2. Place your custom CSS in the file called 'styles.css'
 3. Edit the given JSON file with the data for your music.
