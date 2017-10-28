@@ -1,0 +1,111 @@
+/*                                                                            
+  This is the CSS file styling the AngularAudioPlayer.
+  Note: Do NOT alter this file.
+  If you desire different colors, style the corresponding
+  IDs in your own CSS file.
+*/ 
+
+/*// style the div housing the player*/
+#player {
+    padding: 5px;
+    vertical-align: central;
+
+/*    // the following code is obtained from:
+    // http://stackoverflow.com/questions/9620122/stop-html-text-being-highlighted*/
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    border-bottom: 2px solid white;
+}
+
+/*// remove all margins*/
+body {
+    margin: 0px;
+}
+
+/*// set the width of the audio tag*/
+audio {
+    width: calc(100% - 60px);
+
+}
+
+canvas {
+    width: 100%;
+}
+
+/*// style the previous button*/
+#prev-btn {
+    float: left;
+    padding-top: 5px;
+    color: black;
+    font-weight: bold;
+    margin-right: 5px;
+}
+
+/*// style the two controls on the right*/
+#controls-right {
+    float: right;
+    
+    color: black;
+    font-weight: bold;
+
+}
+
+/*// style the next button*/
+
+
+/*// style all links on hover*/
+#prev-btn:hover, #next-btn:hover {
+    color: #cccccc;
+    cursor: default;
+}
+
+/*// style the song title and loop text*/
+#songtitle, #loop {
+    padding: 5px;
+    margin: 0px;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+    cursor: default;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+.menu-item {
+    color: white;
+}
+
+
+

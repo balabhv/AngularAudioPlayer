@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<!--
+    This is the sample HTML file for the AngularAudioPlayer.
+    To include page content, do not modify the #player div. Add custom
+    content below that div.
+-->
+<html ng-app="PlayerApp">
+    <head>
+        <meta charset="utf-8">
+        <title>AngularAudioPlayer</title>
+
+        <!-- CSS Reset. Source can be found in the header of the CSS file itself. -->
+        <link href="css/reset.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="css/playerskin.css">
+        <link rel="stylesheet" type="text/css" href="css/styles.css">
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+        <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <!-- AngularJS Material Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-aria.min.js"></script>
+
+
+        <!-- AngularJS Material Javascript now available via Google CDN; version 1.1.4 used here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
+        <!-- Application business logic -->
+        <script src="js/script.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    </head>
+    <body ng-controller="PlayerCtrl">
+        <div id="main" class="">
+            <nav class="navbar navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="#">Audio Player</a>
+                <div class="">
+                    <ul class="navbar-nav mr-auto">
+                        
+                    </ul>
+                    <span class="badge badge-default menu-item">Song List:</span>
+                    <md-button aria-expanded="false" class="md-primary navbar-toggler" id="show-playlist" ng-click="toggleNav()" aria-label="Playlist" >
+                        <i class="material-icons">menu</i>
+                    </md-button>
+                </div>
+            </nav>
+            <div id="player">
+                <canvas id="visualizer"></canvas>
+                <h3 id="songtitle">{{currentSongTitle}}</h3>
+                <a id="prev-btn" ng-click="prevSong()"><i class="material-icons">skip_previous</i></a>
+                <audio id="audioplayer" controls autoplay ng-src="{{currentSong}}">
+                </audio>
+                <div id="controls-right">
+                    <a id="next-btn" ng-click="nextSong()"><i class="material-icons">skip_next</i></a>
+                </div>
+                <div id="loop">
+                    <span>Loop: </span>
+                    <md-checkbox ng-model="loop"></md-checkbox>
+                </div>
+                <div id="songs-list" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
+                    <a ng-repeat="oneSubmit in jsonData.data.RECORDS" href="#" ng-click="changeSong(oneSubmit)" id='{{oneSubmit.id}}' class="song">{{oneSubmit.title}}</a>
+                </div>
+            </div>
+        </div>
+
+    </body>
+</html>
