@@ -7,7 +7,6 @@
 
 /*// style the div housing the player*/
 #player {
-    background-color: black;
     padding: 5px;
     vertical-align: central;
 
@@ -29,15 +28,19 @@ body {
 
 /*// set the width of the audio tag*/
 audio {
-    width: 1150px;
+    width: calc(100% - 60px);
 
+}
+
+canvas {
+    width: 100%;
 }
 
 /*// style the previous button*/
 #prev-btn {
     float: left;
     padding-top: 5px;
-    color: #999999;
+    color: black;
     font-weight: bold;
     margin-right: 5px;
 }
@@ -45,57 +48,63 @@ audio {
 /*// style the two controls on the right*/
 #controls-right {
     float: right;
-    padding-top: 5px;
-    color: #999999;
+    
+    color: black;
     font-weight: bold;
 
 }
 
 /*// style the next button*/
-#next-btn {
-    padding-right: 5px;
-}
+
 
 /*// style all links on hover*/
-#prev-btn:hover, a:hover {
+#prev-btn:hover, #next-btn:hover {
     color: #cccccc;
     cursor: default;
 }
 
-/*// style the table of songs*/
-#tblSongs {
-    background-color: white;
-    float: right;
+/*// style the song title and loop text*/
+#songtitle, #loop {
+    padding: 5px;
+    margin: 0px;
 }
 
-/*// style each row in the table of songs*/
-.song {
-    background-color: #cccccc;
-    color: black;
-
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    right: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
 }
 
-/*// style hover for each row in the table of songs*/
-.song:hover {
-    background-color: #999999;
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
     cursor: default;
 }
 
-/*// style all children of each row in the table of songs*/
-.song * {
-    padding: 5px;
-    margin: 0px;
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
-/*// style the song title and loop text*/
-#songtitle, #loop {
+.menu-item {
     color: white;
-    padding: 5px;
-    margin: 0px;
-}
-
-#show-playlist {
-    font-size: 20px;
 }
 
 

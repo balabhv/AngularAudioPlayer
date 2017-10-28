@@ -6,7 +6,7 @@
  */
 
 "use strict";  // to ensure that all variables are declared before use
-var myApp = angular.module('PlayerApp', []);
+var myApp = angular.module('PlayerApp', ['ngMaterial']);
 
 // set a constant to the JSON file path
 myApp.constant("jsonUrl", "json/songs.json");
@@ -23,36 +23,79 @@ myApp.controller('PlayerCtrl',
                     $http.get(jsonUrl)                // perform the Ajax call
                             .success(function (data) {      // execute this function if the Ajax succeeds
                                 $scope.jsonData.data = data;
-                                
+
                                 //function to shuffle the input data randomly
                                 $scope.shuffle = function (o) {
                                     for (var j, x, i = o.length; i; j = Math.floor(Math.random() * i), x = o[--i], o[i] = o[j], o[j] = x)
                                         ;
                                     return o;
                                 };
-                                
+
                                 // shuffle the input and set the initial song
                                 $scope.jsonData.data.RECORDS = $scope.shuffle($scope.jsonData.data.RECORDS);
                                 $scope.currentSong = $scope.jsonData.data.RECORDS[0].src;
                                 $scope.currentSongIndex = 0;
                                 $scope.currentSongTitle = $scope.jsonData.data.RECORDS[0].title;
-                                
-                            })                               
+
+                            })
                             .error(function (error) {      // execute this function if the Ajax fails
                                 $scope.jsonData.error = error; // set the model's jsonData.error property to the
                             });                             //    error returned by the Ajax call
 
-                    $scope.showSongs = false; // show the playlist
+                    $scope.audioContext = new AudioContext();
+                    $scope.src = null;
+                    $scope.analyser = null;
 
-                    // function to toggle the playlist
-                    $scope.toggle = function () {
-                        $scope.showSongs = !$scope.showSongs;
-                    };
-                    
                     // default: don't loop the current song
                     $scope.loop = false;
                     
-                    
+                    $scope.isNavOpen = false;
+
+
+                    $scope.onPlay = function (audio) {
+                        $scope.src = $scope.audioContext.createMediaElementSource(audio);
+                        $scope.analyser = $scope.audioContext.createAnalyser();
+
+                        var canvas = document.getElementById("visualizer");
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight / 2;
+                        var ctx = canvas.getContext("2d");
+
+                        $scope.src.connect($scope.analyser);
+                        $scope.analyser.connect($scope.audioContext.destination);
+
+                        $scope.analyser.fftSize = 256;
+
+                        var bufferLength = $scope.analyser.frequencyBinCount;
+
+                        var dataArray = new Uint8Array(bufferLength);
+
+                        var WIDTH = canvas.width;
+                        var HEIGHT = canvas.height;
+
+                        var barWidth = (WIDTH / bufferLength) * 1.5;
+                        var barHeight;
+                        var x = 0;
+
+                        function renderFrame() {
+                            requestAnimationFrame(renderFrame);
+                            x = 0;
+                            $scope.analyser.getByteFrequencyData(dataArray);
+                            ctx.fillStyle = "#FFF";
+                            ctx.fillRect(0, 0, WIDTH, HEIGHT);
+                            for (var i = 0; i < bufferLength; i++) {
+                                barHeight = dataArray[i];
+                                var r = barHeight + (25 * (i / bufferLength));
+                                var g = 250 * (i / bufferLength);
+                                var b = 50;
+                                ctx.fillStyle = "rgb(" + r + "," + g + "," + b + ")";
+                                ctx.fillRect(x, HEIGHT - barHeight, barWidth, barHeight);
+                                x += barWidth + 1;
+                            }
+                        }
+
+                        renderFrame();
+                    };
 
                     // set a listener on the audio tag so that when one song ends,
                     // the next song in the playlist begins automatically.
@@ -69,6 +112,9 @@ myApp.controller('PlayerCtrl',
                             }
 
                         });
+                        audio.addEventListener('play', function () {
+                            $scope.onPlay(this);
+                        });
                     });
 
                     // boolean to make sure that the user double-clicks the previous button
@@ -80,7 +126,7 @@ myApp.controller('PlayerCtrl',
 
                         var audio = document.getElementById('audioplayer');
                         audio.setAttribute('src', oneSubmit.src);
-                        
+
                         // get the current song
                         $scope.currentSong = oneSubmit.src;
                         for (var i = 0; i < $scope.jsonData.data.RECORDS.length; i++) {
@@ -108,9 +154,8 @@ myApp.controller('PlayerCtrl',
 
                         $scope.currentSongIndex = 0;
 
-                        audio.play(); 
-                        $scope.toggle(); // hide the playlist view
-                        $scope.$apply(); // force the UI to reload the song title
+                        audio.play();
+                        $scope.closeNav();
 
                     };
 
@@ -124,6 +169,7 @@ myApp.controller('PlayerCtrl',
                             audio.currentTime = 0;
 
                             audio.play();
+
 
                         } else {
                             if (!$scope.prevClicked) {
@@ -152,8 +198,6 @@ myApp.controller('PlayerCtrl',
                             }
 
                         }
-                        // force the UI to reload the song title
-                        $scope.$apply();
 
                     };
 
@@ -168,7 +212,7 @@ myApp.controller('PlayerCtrl',
                             audio.setAttribute('src', $scope.jsonData.data.RECORDS[$scope.currentSongIndex].src);
                             $scope.currentSong = $scope.jsonData.data.RECORDS[$scope.currentSongIndex].src;
                             $scope.currentSongTitle = $scope.jsonData.data.RECORDS[$scope.currentSongIndex].title;
-                            
+
                             audio.play();
 
                         } else {
@@ -184,8 +228,26 @@ myApp.controller('PlayerCtrl',
                             audio.play();
 
                         }
-                        // force the UI to reload the song title
-                        $scope.$apply();
+                    };
+
+                    $scope.openNav = function () {
+                        document.getElementById("songs-list").style.width = "250px";
+                        document.getElementById("main").style.marginRight = "250px";
+                        $scope.isNavOpen = true;
+                    };
+
+                    $scope.closeNav = function () {
+                        document.getElementById("songs-list").style.width = "0";
+                        document.getElementById("main").style.marginRight = "0";
+                        $scope.isNavOpen = false;
+                    };
+                    
+                    $scope.toggleNav = function() {
+                        if ($scope.isNavOpen) {
+                            $scope.closeNav();
+                        } else {
+                            $scope.openNav();
+                        }
                     };
 
 

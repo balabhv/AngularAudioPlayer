@@ -14,54 +14,57 @@
 
         <link rel="stylesheet" type="text/css" href="css/playerskin.css">
         <link rel="stylesheet" type="text/css" href="css/styles.css">
-        <!-- this is version 1.2.27 -->
-        <script src="js/libs/angular.js/angular.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.css">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
         <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+        <!-- AngularJS Material Dependencies -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-animate.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.11/angular-aria.min.js"></script>
 
-        <!-- utility functions for this app - created by
-            University of Massachusetts Lowell Computer Science
-            Professor Jesse Heines.
-        -->
-        <script src="js/jmh-utilities.js"></script>
 
+        <!-- AngularJS Material Javascript now available via Google CDN; version 1.1.4 used here -->
+        <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.4/angular-material.min.js"></script>
         <!-- Application business logic -->
         <script src="js/script.js"></script>
-
-        <!-- filter functions for this app - created by
-            University of Massachusetts Lowell Computer Science
-            Professor Jesse Heines.
-        -->
-        <script src="js/jmh-assn09-filters.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <div id="player" ng-app="PlayerApp" ng-controller="PlayerCtrl">
-            <h3 id="songtitle">{{currentSongTitle}}</h3>
-            <a id="prev-btn" ng-click="prevSong()">|&lt;&lt;</a>
-            <audio id="audioplayer" controls autoplay ng-src="{{currentSong}}">
-            </audio>
-            <div id="controls-right">
-                <a id="next-btn" ng-click="nextSong()">&gt;&gt;|</a>
-                <a id="show-playlist" ng-click="toggle()">|||</a> 
-            </div>
-            <div id="loop">
-                <span>Loop: </span>
-                <input type='checkbox' ng-model="loop">
-            </div>
-            <div id="songs-list" ng-show="showSongs">
-                <table id="tblSongs">
-                    <tr ng-repeat="oneSubmit in jsonData.data.RECORDS">
-                        <td>
-                            <div id='{{oneSubmit.id}}' class="song" ng-click="changeSong(oneSubmit)">
-                                <h3>{{oneSubmit.title}}</h3>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
+    <body ng-controller="PlayerCtrl">
+        <div id="main" class="">
+            <nav class="navbar navbar-dark fixed-top bg-dark">
+                <a class="navbar-brand" href="#">Audio Player</a>
+                <div class="">
+                    <ul class="navbar-nav mr-auto">
+                        
+                    </ul>
+                    <span class="badge badge-default menu-item">Song List:</span>
+                    <md-button aria-expanded="false" class="md-primary navbar-toggler" id="show-playlist" ng-click="toggleNav()" aria-label="Playlist" >
+                        <i class="material-icons">menu</i>
+                    </md-button>
+                </div>
+            </nav>
+            <div id="player">
+                <canvas id="visualizer"></canvas>
+                <h3 id="songtitle">{{currentSongTitle}}</h3>
+                <a id="prev-btn" ng-click="prevSong()"><i class="material-icons">skip_previous</i></a>
+                <audio id="audioplayer" controls autoplay ng-src="{{currentSong}}">
+                </audio>
+                <div id="controls-right">
+                    <a id="next-btn" ng-click="nextSong()"><i class="material-icons">skip_next</i></a>
+                </div>
+                <div id="loop">
+                    <span>Loop: </span>
+                    <md-checkbox ng-model="loop"></md-checkbox>
+                </div>
+                <div id="songs-list" class="sidenav">
+                    <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
+                    <a ng-repeat="oneSubmit in jsonData.data.RECORDS" href="#" ng-click="changeSong(oneSubmit)" id='{{oneSubmit.id}}' class="song">{{oneSubmit.title}}</a>
+                </div>
             </div>
         </div>
-        <div id="content-div">
-            <h1>Place your content here...</h1>
-            <p>"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."</p>
-        </div>
+
     </body>
 </html>
