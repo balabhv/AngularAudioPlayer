@@ -1,0 +1,44 @@
+{
+  "name": "angular-audio",
+  "version": "1.0.0",
+  "keywords": [
+    "util",
+    "functional",
+    "server",
+    "client",
+    "browser"
+  ],
+  "author": "Virinchi",
+  "contributors": [],
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.15.1",
+    "bookshelf": "^0.9.2",
+    "compression": "^1.6.2",
+    "cookie-parser": "^1.4.1",
+    "dotenv": "^2.0.0",
+    "express": "^4.13.4",
+    "express-validator": "^2.20.4",
+    "knex": "^0.10.0",
+    "morgan": "^1.7.0",
+    "nodemailer": "^2.3.0",
+    "pg": "^4.5.1",
+    "ejs": "^1.0.0"
+  },
+  "description": "AngularAudioPlayer\r ==================",
+  "scripts": {
+    "main": "node index.js"
+  },
+  "engines": {
+    "node": "6.1.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/balabhv/AngularAudioPlayer.git"
+  },
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/balabhv/AngularAudioPlayer/issues"
+  },
+  "homepage": "https://github.com/balabhv/AngularAudioPlayer#readme"
+}
