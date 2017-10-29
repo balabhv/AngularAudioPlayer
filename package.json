@@ -27,7 +27,7 @@
   },
   "description": "AngularAudioPlayer\r ==================",
   "scripts": {
-    "main": "node index.js"
+    "start": "node index.js"
   },
   "engines": {
     "node": "6.1.0"
