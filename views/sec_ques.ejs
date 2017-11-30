@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <% include ../partials/header.ejs %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var questions = <% questions %>;
+        $.each(questions, function(sec_ques_id, ques_dsc) {   
+          $('#q1').append($("<option></option>")
+                          .attr("value",sec_ques_id)
+                          .text(ques_dsc)); 
+          $('#q2').append($("<option></option>")
+                          .attr("value",sec_ques_id)
+                          .text(ques_dsc)); 
+        });
+        $('#q1').change(function() {
+          var val = $('#q1').val();
+          $("#q2 option").remove();
+          $.each(questions, function(sec_ques_id, ques_dsc) {
+            if (sec_ques_id != val) {
+              ('#q2').append($("<option></option>")
+                          .attr("value",sec_ques_id)
+                          .text(ques_dsc));
+            }
+          });
+        });
+      });
+    </script>
+  </head>
+
+  <body>
+    <form >
+    	Select Security Questions: <br>
+      Question 1:
+    	<select name="q1" id='q1'>
+      </select>
+      <input type="text" id="q1a" name="q1a">
+      <br> Question 2:
+      <select name="q2" id='q2'>
+      </select>
+      <input type="text" id="q2a" name="q2a">
+    	<input type="button" id="frm" value="Submit">
+    </form>
+    <div id='test'></div>
+    <script>
+    $('#frm').click(function () {
+      var user_id = '<% user_id %>';
+      var q1 = $('#q1').val();
+      var q2 = ($'#q2').val();
+      var q1a = $('#q1a').val();
+      var q2a = $('#q2a').val();
+      $.ajax({
+          type: 'POST',
+          url: 'https://mydailybeat.herokuapp.com/register/security',
+          data: {
+            user_id: user_id,
+            questions: [
+              {id: q1, answer: q1a},
+              {id: q2, answer: q2a}
+            ]
+          },
+          success: function(data)  {
+            window.location.href = "https://mydailybeat.herokuapp.com/register/verified";
+          }
+        });
+    });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/header.ejs %>
+<script type="text/javascript">
+    $(document).ready({
+        $('#entryFrm').show()
+        $('#Instructions').hide()
+    });
+</script>
+</head>
+<body>
+<h1>Forgot Username</h1>
+<div id='entryFrm'>
+	Enter your email address
+<form>
+<input autofocus type="text" id="email" name="email"><br>
+    	<input type="button" id="frm" value="Submit">
+</form></div>
+<div id='Instructions'>
+Check the email address you entered above for further instructions.
+</div>
+<script>
+    $('#frm').click(function () {
+    	var email = $('#email').val();
+        $.ajax({
+            type: 'POST',
+            url: 'https://mydailybeat.herokuapp.com/users/forgot/username',
+            data: {
+                email: email
+            },
+            success: function(data)  {
+              $('#Instructions').show();
+            }
+          });
+    });
+    </script>
+</body>
+</html>
