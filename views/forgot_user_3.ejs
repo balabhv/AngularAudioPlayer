@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/header.ejs %>
+<script type="text/javascript">
+    $(document).ready({
+        $('#reset').show()
+        $('#success').hide()
+    });
+</script>
+</head>
+<body>
+<div id='reset'>
+    <h1>Reset Username</h1>
+<form>
+<input autofocus type="text" id="user" name="user"><br>
+        <input type="button" id="frm" value="Submit">
+</form>
+</div>
+<div id='success'>
+<h1>Reset Complete</h1>
+</div>
+<script>
+    $('#frm').click(function () {
+        var username = $('#user').val();
+        var hash = '<% hash %>';
+        $.ajax({
+            type: 'POST',
+            url: 'https://mydailybeat.herokuapp.com/users/forgot/username/reset/' + hash,
+            data: {
+              username: username
+            },
+            success: function(data)  {
+                $('#success').show()
+                $('#reset').hide()
+            }
+          });
+    });
+    </script>
+</body>
+</html>

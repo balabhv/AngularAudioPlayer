@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/header.ejs %>
+<script type="text/javascript">
+    $(document).ready({
+        var question = '<% question %>';
+        $('#question').html('<strong>' + question + '</strong>');
+    });
+</script>
+</head>
+<body>
+<h1>Forgot Username</h1>
+Please Answer the below security question.
+<form>
+    Security Question: <div id='question'></div>
+<input autofocus type="text" id="answer" name="answer"><br>
+    	<input type="button" id="frm" value="Submit">
+</form>
+<script>
+    $('#frm').click(function () {
+    	var answer = $('#answer').val();
+        var hash = '<% hash %>';
+        var question = '<% question %>';
+        $.ajax({
+            type: 'POST',
+            url: 'https://mydailybeat.herokuapp.com/users/forgot/username/security/' + hash,
+            data: {
+                question: question,
+                answer: answer
+            },
+            success: function(data)  {
+              window.location.href = "https://mydailybeat.herokuapp.com/users/forgot/username/reset/" + hash;
+            }
+          });
+    });
+    </script>
+</body>
+</html>
