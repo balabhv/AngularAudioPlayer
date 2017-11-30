@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+<% include ../partials/header.ejs %>
+</head>
+<body>
+<h1>Forgot Password</h1>
+Enter your screen name.
+<form>
+<input autofocus type="text" id="uname" name="uname"><br>
+    	<input type="button" id="frm" value="Submit">
+</form>
+<script>
+    $('#frm').click(function () {
+    	var uname = $('#uname').val();
+        window.location.href = "https://mydailybeat.herokuapp.com/users/" + uname + "/forgot/pass/security";
+    });
+    </script>
+</body>
+</html>
