@@ -2,55 +2,55 @@
     "RECORDS": [
         {
             "title": "The Legend of Zelda Main Theme - Legend of Zelda 25th Anniversary Orchestra",
-            "src": "../../song/MainTheme.mp3",
+            "src": "/AngularAudioPlayer/song/MainTheme.mp3",
             "type": "audio/mpeg",
             "id": "MainTheme"
         },
         {
             "title": "Lost Woods",
-            "src": "../../song/Woods.mp3",
+            "src": "/AngularAudioPlayer/song/Woods.mp3",
             "type": "audio/mpeg",
             "id": "Woods"
         },
         {
             "title": "Lost Woods Zeldastep",
-            "src": "../../song/WoodsZeldastep.mp3",
+            "src": "/AngularAudioPlayer/song/WoodsZeldastep.mp3",
             "type": "audio/mpeg",
             "id": "WoodsZeldastep"
         },
         {
             "title": "Song of Storms",
-            "src": "../../song/Storms.mp3",
+            "src": "/AngularAudioPlayer/song/Storms.mp3",
             "type": "audio/mpeg",
             "id": "Storms"
         },
         {
             "title": "Song of Storms Zeldastep",
-            "src": "../../song/StormsZeldastep.mp3",
+            "src": "/AngularAudioPlayer/song/StormsZeldastep.mp3",
             "type": "audio/mpeg",
             "id": "StormsZeldastep"
         },
         {
             "title": "Gerudo Valley",
-            "src": "../../song/Gerudo.mp3",
+            "src": "/AngularAudioPlayer/song/Gerudo.mp3",
             "type": "audio/mpeg",
             "id": "Gerudo"
         },
         {
             "title": "Gerudo Valley Zeldastep",
-            "src": "../../song/GerudoZeldastep.mp3",
+            "src": "/AngularAudioPlayer/song/GerudoZeldastep.mp3",
             "type": "audio/mpeg",
             "id": "GerudoZeldastep"
         },
         {
             "title": "Dragonroost Island",
-            "src": "../../song/DragonRoostIsland.mp3",
+            "src": "/AngularAudioPlayer/song/DragonRoostIsland.mp3",
             "type": "audio/mpeg",
             "id": "DragonRoost"
         },
         {
             "title": "Dragonroost Island Zeldastep",
-            "src": "../../song/DragonRoostIslandZeldastep.mp3",
+            "src": "/AngularAudioPlayer/song/DragonRoostIslandZeldastep.mp3",
             "type": "audio/mpeg",
             "id": "DragonRoostZeldastep"
         }
