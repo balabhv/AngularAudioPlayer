@@ -50,7 +50,7 @@
                 <canvas id="visualizer"></canvas>
                 <h3 id="songtitle">{{currentSongTitle}}</h3>
                 <a id="prev-btn" ng-click="prevSong()"><i class="material-icons">skip_previous</i></a>
-                <audio id="audioplayer" controls autoplay ng-src="{{currentSong}}">
+                <audio id="audioplayer" controls controlsList="nodownload" autoplay ng-src="{{currentSong}}">
                 </audio>
                 <div id="controls-right">
                     <a id="next-btn" ng-click="nextSong()"><i class="material-icons">skip_next</i></a>
