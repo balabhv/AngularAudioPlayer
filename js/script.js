@@ -162,7 +162,7 @@ myApp.controller('PlayerCtrl',
                     // handle the click of the previous button
                     $scope.prevSong = function () {
                         // if playing the first song in the list
-                        if ($scope.currentSongIndex === 0) {
+                        if ($scope.currentSongIndex == 0) {
 
                             // return to the beginning
                             var audio = document.getElementById('audioplayer');
@@ -204,7 +204,7 @@ myApp.controller('PlayerCtrl',
                     // handle the click of the next button
                     $scope.nextSong = function () {
                         // if the current song is the last song in the playlist
-                        if ($scope.currentSongIndex === $scope.jsonData.data.RECORDS.length - 1) {
+                        if ($scope.currentSongIndex == $scope.jsonData.data.RECORDS.length - 1) {
                             // wrap around to the first song in the playlist
                             $scope.currentSongIndex = 0;
 
