@@ -62,13 +62,13 @@
         },
         {
             "title": "Enter Sandman",
-            "src": "/AngularAudioPlayer/song/sandman.m4a",
+            "src": "/AngularAudioPlayer/song/sandman.mp3",
             "type": "audio/mpeg",
             "id": "sandman"
         },
         {
             "title": "Highway to Hell",
-            "src": "/AngularAudioPlayer/song/highway.m4a",
+            "src": "/AngularAudioPlayer/song/highway.mp3",
             "type": "audio/mpeg",
             "id": "highway"
         },
